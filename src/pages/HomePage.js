@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchPosts } from '../features/posts/postsSlice';
 import Post from '../components/Post/Post';
 import Header from '../components/Header/Header';
+import Sidebar from '../components/Sidebar/Sidebar';
 
 const HomePage = () => {
   const dispatch = useDispatch();
@@ -16,15 +17,16 @@ const HomePage = () => {
   if (error) return <div>Ошибка: {error}</div>;
 
   return (
-    <div style={{ paddingTop: '70px' }}>
+    <div className="app">
       <Header />
-      <main>
-        {posts.map((post) => (
+      <Sidebar />
+      <main className="content">
+        {posts.map(post => (
           <Post key={post.id} post={post} />
         ))}
       </main>
     </div>
   );
-};
+}
 
 export default HomePage;
